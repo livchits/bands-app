@@ -1,26 +1,17 @@
 import * as React from 'react';
 
+import useGetData from '../hooks/useGetData';
+
 function Bands() {
-  const [bands, setBands] = React.useState([]);
-  const [status, setStatus] = React.useState('idle');
-  const [error, setError] = React.useState(null);
+  const { VITE_BANDS: bandsUrl } = import.meta.env;
 
-  React.useEffect(() => {
-    setStatus('pending');
-    fetch(
-      'https://my-json-server.typicode.com/improvein/dev-challenge/bands?_sort=name&_order=asc'
-    )
-      .then((response) => response.json())
-      .then((data) => setBands(data))
-      .catch((error) => setError(error))
-      .finally(() => setStatus('complete'));
-  }, []);
-
-  if (status === 'pending') return <div>Loading...</div>;
+  const { status, data: bands, error } = useGetData(bandsUrl);
 
   if (error) return <div>Something went wrong</div>;
 
-  return (
+  return status === 'pending' ? (
+    <div>Loading...</div>
+  ) : (
     <ul>
       {bands.map(({ name, id }) => (
         <li key={id}>{name}</li>
