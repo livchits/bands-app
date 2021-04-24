@@ -2,12 +2,14 @@ import * as React from 'react';
 
 import useGetData from '../hooks/useGetData';
 
-function ShowBandsOptions({ handleChange, orderAsc, setFilterCriteria }) {
+function ShowBandsOptions({ setOrderAsc, orderAsc, setFilterCriteria }) {
   const { VITE_GENRES: genresUrl } = import.meta.env;
   const { data: genres, error } = useGetData(genresUrl);
 
   const handleFilterChange = ({ currentTarget }) =>
     setFilterCriteria(currentTarget.value);
+
+  const handleOrderChange = () => setOrderAsc((orderAsc) => !orderAsc);
 
   if (error) return <div>Something went wrong</div>;
 
@@ -20,7 +22,7 @@ function ShowBandsOptions({ handleChange, orderAsc, setFilterCriteria }) {
           name='order'
           type='radio'
           value={orderAsc}
-          onChange={handleChange}
+          onChange={handleOrderChange}
         />
         <label htmlFor='asc'>A-Z</label>
         <input
@@ -28,7 +30,7 @@ function ShowBandsOptions({ handleChange, orderAsc, setFilterCriteria }) {
           name='order'
           type='radio'
           value={orderAsc}
-          onChange={handleChange}
+          onChange={handleOrderChange}
         />
         <label htmlFor='desc'>Z-A</label>
       </div>

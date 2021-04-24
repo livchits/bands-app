@@ -10,9 +10,9 @@ function App() {
   return (
     <>
       <ShowBandsOptions
-        handleChange={() => setOrderAsc((orderAsc) => !orderAsc)}
         orderAsc={orderAsc}
         setFilterCriteria={setFilterCriteria}
+        setOrderAsc={setOrderAsc}
       />
       <Bands filterCriteria={filterCriteria} orderAsc={orderAsc} />
     </>
