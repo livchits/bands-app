@@ -44,5 +44,6 @@ module.exports = {
       },
     ],
     'react/react-in-jsx-scope': 'error',
+    'jsx-a11y/no-onchange': 'off',
   },
 };

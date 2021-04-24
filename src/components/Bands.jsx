@@ -1,9 +1,10 @@
 import * as React from 'react';
 
+import filterByGenre from '../../utils/filterByGenre';
 import sortByName from '../../utils/sortByName';
 import useGetData from '../hooks/useGetData';
 
-function Bands({ orderAsc }) {
+function Bands({ orderAsc, filterCriteria }) {
   const { VITE_BANDS: bandsUrl } = import.meta.env;
 
   const { status, data: bands, error } = useGetData(bandsUrl);
@@ -13,10 +14,11 @@ function Bands({ orderAsc }) {
   if (status === 'pending') return <div>Loading...</div>;
 
   const sortedBands = sortByName(bands, orderAsc);
+  const filteredBands = filterByGenre(sortedBands, filterCriteria);
 
   return (
     <ul>
-      {sortedBands.map(({ name, id }) => (
+      {filteredBands.map(({ name, id }) => (
         <li key={id}>{name}</li>
       ))}
     </ul>

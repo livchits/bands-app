@@ -2,9 +2,12 @@ import * as React from 'react';
 
 import useGetData from '../hooks/useGetData';
 
-function ShowBandsOptions({ handleChange, orderAsc }) {
+function ShowBandsOptions({ handleChange, orderAsc, setFilterCriteria }) {
   const { VITE_GENRES: genresUrl } = import.meta.env;
   const { data: genres, error } = useGetData(genresUrl);
+
+  const handleFilterChange = ({ currentTarget }) =>
+    setFilterCriteria(currentTarget.value);
 
   if (error) return <div>Something went wrong</div>;
 
@@ -29,7 +32,7 @@ function ShowBandsOptions({ handleChange, orderAsc }) {
         />
         <label htmlFor='desc'>Z-A</label>
       </div>
-      <select id='genres' name='genres'>
+      <select id='genres' name='genres' onChange={handleFilterChange}>
         <option value=''>Filter for a genre</option>
         {genres?.map(({ name, code }) => (
           <option key={code} value={code}>
