@@ -36,14 +36,17 @@ function ShowBandsOptions({
         <label htmlFor='desc'>Z-A</label>
       </div>
       {genresData && (
-        <select id='genres' name='genres' onChange={handleFilterChange}>
-          <option value=''>Filter for a genre</option>
-          {genresData?.map(({ name, code }) => (
-            <option key={code} value={code}>
-              {name}
-            </option>
-          ))}
-        </select>
+        <>
+          <label htmlFor='genres'>Filter for genre:</label>
+          <select id='genres' name='genres' onChange={handleFilterChange}>
+            <option value='all'>All</option>
+            {genresData.map(({ name, code }) => (
+              <option key={code} value={code}>
+                {name}
+              </option>
+            ))}
+          </select>
+        </>
       )}
     </form>
   );

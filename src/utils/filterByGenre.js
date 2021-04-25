@@ -1,7 +1,7 @@
 function filterByGenre(bands, filterCriteria) {
-  return filterCriteria
-    ? bands.filter(({ genreCode }) => genreCode === filterCriteria)
-    : bands;
+  return filterCriteria === 'all'
+    ? bands
+    : bands.filter(({ genreCode }) => genreCode === filterCriteria);
 }
 
 export default filterByGenre;

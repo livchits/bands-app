@@ -9,7 +9,7 @@ import useGetData from './hooks/useGetData';
 
 function App() {
   const [orderAsc, setOrderAsc] = React.useState(true);
-  const [filterCriteria, setFilterCriteria] = React.useState('');
+  const [filterCriteria, setFilterCriteria] = React.useState('all');
 
   const bands = useGetData(BANDS_URL);
   const genres = useGetData(GENRES_URL);
