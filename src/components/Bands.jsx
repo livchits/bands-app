@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import filterByGenre from '../../utils/filterByGenre';
 import sortByName from '../../utils/sortByName';
@@ -20,7 +21,9 @@ function Bands({ orderAsc, filterCriteria }) {
   return (
     <ul>
       {filteredBands.map(({ name, id }) => (
-        <li key={id}>{name}</li>
+        <li key={id}>
+          <Link to={`${id}`}>{name}</Link>
+        </li>
       ))}
     </ul>
   );
