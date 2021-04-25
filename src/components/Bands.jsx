@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 
 import filterByGenre from '../../utils/filterByGenre';
 import sortByName from '../../utils/sortByName';
@@ -24,5 +25,10 @@ function Bands({ orderAsc, filterCriteria }) {
     </ul>
   );
 }
+
+Bands.propTypes = {
+  orderAsc: PropTypes.bool.isRequired,
+  filterCriteria: PropTypes.string.isRequired,
+};
 
 export default Bands;

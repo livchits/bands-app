@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 
 import useGetData from '../hooks/useGetData';
 
@@ -45,5 +46,11 @@ function ShowBandsOptions({ setOrderAsc, orderAsc, setFilterCriteria }) {
     </form>
   );
 }
+
+ShowBandsOptions.propTypes = {
+  setOrderAsc: PropTypes.func.isRequired,
+  orderAsc: PropTypes.bool.isRequired,
+  setFilterCriteria: PropTypes.func.isRequired,
+};
 
 export default ShowBandsOptions;
