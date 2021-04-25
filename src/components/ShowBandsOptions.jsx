@@ -7,7 +7,7 @@ function ShowBandsOptions({
   setFilterCriteria,
   genres,
 }) {
-  const { data } = genres;
+  const { data: genresData } = genres;
 
   const handleFilterChange = ({ currentTarget }) =>
     setFilterCriteria(currentTarget.value);
@@ -35,14 +35,16 @@ function ShowBandsOptions({
         />
         <label htmlFor='desc'>Z-A</label>
       </div>
-      <select id='genres' name='genres' onChange={handleFilterChange}>
-        <option value=''>Filter for a genre</option>
-        {data?.map(({ name, code }) => (
-          <option key={code} value={code}>
-            {name}
-          </option>
-        ))}
-      </select>
+      {genresData && (
+        <select id='genres' name='genres' onChange={handleFilterChange}>
+          <option value=''>Filter for a genre</option>
+          {genresData?.map(({ name, code }) => (
+            <option key={code} value={code}>
+              {name}
+            </option>
+          ))}
+        </select>
+      )}
     </form>
   );
 }
