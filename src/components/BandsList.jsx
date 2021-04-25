@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import filterByGenre from '../utils/filterByGenre';
 import sortByName from '../utils/sortByName';
 
-function Bands({ orderAsc, filterCriteria, bands }) {
+function BandsList({ orderAsc, filterCriteria, bands }) {
   const { status, data, error } = bands;
 
   if (error) return <div>Something went wrong retrieving bands list</div>;
@@ -26,10 +26,10 @@ function Bands({ orderAsc, filterCriteria, bands }) {
   );
 }
 
-Bands.propTypes = {
+BandsList.propTypes = {
   orderAsc: PropTypes.bool.isRequired,
   filterCriteria: PropTypes.string.isRequired,
   bands: PropTypes.object.isRequired,
 };
 
-export default Bands;
+export default BandsList;

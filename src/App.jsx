@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { BANDS_URL, GENRES_URL } from './constants/urls';
 import BandInfo from './components/BandInfo';
-import Bands from './components/Bands';
+import BandsList from './components/BandsList';
 import ShowBandsOptions from './components/ShowBandsOptions';
 import useGetData from './hooks/useGetData';
 
@@ -24,7 +24,7 @@ function App() {
             setFilterCriteria={setFilterCriteria}
             setOrderAsc={setOrderAsc}
           />
-          <Bands
+          <BandsList
             bands={bands}
             filterCriteria={filterCriteria}
             orderAsc={orderAsc}
