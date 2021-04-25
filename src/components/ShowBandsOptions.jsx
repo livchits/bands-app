@@ -3,16 +3,22 @@ import PropTypes from 'prop-types';
 
 import useGetData from '../hooks/useGetData';
 
-function ShowBandsOptions({ setOrderAsc, orderAsc, setFilterCriteria }) {
-  const { VITE_GENRES: genresUrl } = import.meta.env;
-  const { data: genres, error } = useGetData(genresUrl);
+function ShowBandsOptions({
+  setOrderAsc,
+  orderAsc,
+  setFilterCriteria,
+  genres,
+}) {
+  // const { VITE_GENRES: genresUrl } = import.meta.env;
+  // const { data: genres, error } = useGetData(genresUrl);
+  const { data } = genres;
 
   const handleFilterChange = ({ currentTarget }) =>
     setFilterCriteria(currentTarget.value);
 
   const handleOrderChange = () => setOrderAsc((orderAsc) => !orderAsc);
 
-  if (error) return <div>Something went wrong</div>;
+  // if (error) return <div>Something went wrong</div>;
 
   return (
     <form>
@@ -37,7 +43,7 @@ function ShowBandsOptions({ setOrderAsc, orderAsc, setFilterCriteria }) {
       </div>
       <select id='genres' name='genres' onChange={handleFilterChange}>
         <option value=''>Filter for a genre</option>
-        {genres?.map(({ name, code }) => (
+        {data?.map(({ name, code }) => (
           <option key={code} value={code}>
             {name}
           </option>

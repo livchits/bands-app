@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+import { BANDS_URL, GENRES_URL } from './constants/urls';
 import BandInfo from './components/BandInfo';
 import Bands from './components/Bands';
 import ShowBandsOptions from './components/ShowBandsOptions';
@@ -10,26 +11,27 @@ function App() {
   const [orderAsc, setOrderAsc] = React.useState(true);
   const [filterCriteria, setFilterCriteria] = React.useState('');
 
-  const { VITE_BANDS: bandsUrl } = import.meta.env;
-  const bandsData = useGetData(bandsUrl);
+  const bands = useGetData(BANDS_URL);
+  const genres = useGetData(GENRES_URL);
 
   return (
     <Router>
       <Switch>
         <Route exact path='/'>
           <ShowBandsOptions
+            genres={genres}
             orderAsc={orderAsc}
             setFilterCriteria={setFilterCriteria}
             setOrderAsc={setOrderAsc}
           />
           <Bands
-            bandsData={bandsData}
+            bands={bands}
             filterCriteria={filterCriteria}
             orderAsc={orderAsc}
           />
         </Route>
         <Route exact path='/:id'>
-          <BandInfo bandsData={bandsData} />
+          <BandInfo bands={bands} genres={genres} />
         </Route>
       </Switch>
     </Router>

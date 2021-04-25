@@ -2,11 +2,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import filterByGenre from '../../utils/filterByGenre';
-import sortByName from '../../utils/sortByName';
+import filterByGenre from '../utils/filterByGenre';
+import sortByName from '../utils/sortByName';
 
-function Bands({ orderAsc, filterCriteria, bandsData }) {
-  const { status, data, error } = bandsData;
+function Bands({ orderAsc, filterCriteria, bands }) {
+  const { status, data, error } = bands;
 
   if (error) return <div>Something went wrong retrieving bands list</div>;
 
