@@ -4,18 +4,15 @@ import { Link } from 'react-router-dom';
 
 import filterByGenre from '../../utils/filterByGenre';
 import sortByName from '../../utils/sortByName';
-import useGetData from '../hooks/useGetData';
 
-function Bands({ orderAsc, filterCriteria }) {
-  const { VITE_BANDS: bandsUrl } = import.meta.env;
-
-  const { status, data: bands, error } = useGetData(bandsUrl);
+function Bands({ orderAsc, filterCriteria, bandsData }) {
+  const { status, data, error } = bandsData;
 
   if (error) return <div>Something went wrong retrieving bands list</div>;
 
   if (status === 'pending') return <div>Loading...</div>;
 
-  const sortedBands = sortByName(bands, orderAsc);
+  const sortedBands = sortByName(data, orderAsc);
   const filteredBands = filterByGenre(sortedBands, filterCriteria);
 
   return (
@@ -32,6 +29,7 @@ function Bands({ orderAsc, filterCriteria }) {
 Bands.propTypes = {
   orderAsc: PropTypes.bool.isRequired,
   filterCriteria: PropTypes.string.isRequired,
+  bandsData: PropTypes.object.isRequired,
 };
 
 export default Bands;
