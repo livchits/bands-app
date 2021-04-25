@@ -29,7 +29,7 @@ function Bands({ orderAsc, filterCriteria, bands }) {
 Bands.propTypes = {
   orderAsc: PropTypes.bool.isRequired,
   filterCriteria: PropTypes.string.isRequired,
-  bandsData: PropTypes.object.isRequired,
+  bands: PropTypes.object.isRequired,
 };
 
 export default Bands;

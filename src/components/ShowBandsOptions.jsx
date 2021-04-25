@@ -1,24 +1,18 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
-import useGetData from '../hooks/useGetData';
-
 function ShowBandsOptions({
   setOrderAsc,
   orderAsc,
   setFilterCriteria,
   genres,
 }) {
-  // const { VITE_GENRES: genresUrl } = import.meta.env;
-  // const { data: genres, error } = useGetData(genresUrl);
   const { data } = genres;
 
   const handleFilterChange = ({ currentTarget }) =>
     setFilterCriteria(currentTarget.value);
 
   const handleOrderChange = () => setOrderAsc((orderAsc) => !orderAsc);
-
-  // if (error) return <div>Something went wrong</div>;
 
   return (
     <form>
@@ -57,6 +51,7 @@ ShowBandsOptions.propTypes = {
   setOrderAsc: PropTypes.func.isRequired,
   orderAsc: PropTypes.bool.isRequired,
   setFilterCriteria: PropTypes.func.isRequired,
+  genres: PropTypes.object,
 };
 
 export default ShowBandsOptions;

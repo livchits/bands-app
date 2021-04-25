@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useParams } from 'react-router';
-
+import PropTypes from 'prop-types';
 function BandInfo({ bands, genres }) {
   const { id: paramId } = useParams();
   const { status, data, error } = bands;
@@ -31,5 +31,10 @@ function BandInfo({ bands, genres }) {
     </main>
   );
 }
+
+BandInfo.propTypes = {
+  bands: PropTypes.object.isRequired,
+  genres: PropTypes.object.isRequired,
+};
 
 export default BandInfo;
