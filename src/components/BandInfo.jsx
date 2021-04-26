@@ -14,7 +14,8 @@ function BandInfo({ bands, genres }) {
     ({ id }) => id === Number(paramId)
   );
 
-  const { name: genre } = genresData?.find(({ code }) => code === genreCode);
+  const { name: genre } =
+    genresData && genresData.find(({ code }) => code === genreCode);
 
   return (
     <main>
