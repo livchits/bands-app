@@ -14,15 +14,14 @@ function BandInfo({ bands, genres }) {
     ({ id }) => id === Number(paramId)
   );
 
-  const { name: genre } =
-    genresData && genresData.find(({ code }) => code === genreCode);
+  const genre = genresData && genresData.find(({ code }) => code === genreCode);
 
   return (
     <main>
       <h1>{name}</h1>
       <p>Country: {country}</p>
       <p>Formed in {year}</p>
-      {genre && <p>Genre: {genre}</p>}
+      {genre && <p>Genre: {genre.name}</p>}
       <h2>Members:</h2>
       <ul>
         {members.map(({ name }) => (
