@@ -6,7 +6,7 @@ function BandInfo({ bands, genres }) {
   const { status, data, error } = bands;
   const { data: genresData } = genres;
 
-  if (error) return <div>Something went wrong retrieving bands list</div>;
+  if (error) return <div>Something went wrong retrieving band info</div>;
 
   if (status === 'pending') return <div>Loading...</div>;
 
