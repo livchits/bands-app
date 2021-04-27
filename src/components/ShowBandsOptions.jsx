@@ -16,7 +16,9 @@ function ShowBandsOptions({
 
   return (
     <form>
-      <div>
+      <fieldset>
+        <legend>Bands order:</legend>
+        <label htmlFor='asc'>A-Z</label>
         <input
           checked={orderAsc}
           id='asc'
@@ -25,7 +27,7 @@ function ShowBandsOptions({
           value={orderAsc}
           onChange={handleOrderChange}
         />
-        <label htmlFor='asc'>A-Z</label>
+        <label htmlFor='desc'>Z-A</label>
         <input
           id='desc'
           name='order'
@@ -33,8 +35,7 @@ function ShowBandsOptions({
           value={orderAsc}
           onChange={handleOrderChange}
         />
-        <label htmlFor='desc'>Z-A</label>
-      </div>
+      </fieldset>
       {genresData && (
         <>
           <label htmlFor='genres'>Filter for genre:</label>
