@@ -24,6 +24,7 @@
     "postcss": "^8.2.12",
     "prettier": "^2.2.1",
     "tailwindcss": "^2.1.2",
-    "vite": "^2.0.0-beta.70"
+    "vite": "^2.0.0-beta.70",
+    "vite-plugin-fonts": "^0.2.2"
   }
 }
