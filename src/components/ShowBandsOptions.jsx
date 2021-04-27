@@ -7,8 +7,6 @@ function ShowBandsOptions({
   setFilterCriteria,
   genres,
 }) {
-  const { data: genresData } = genres;
-
   const handleFilterChange = ({ currentTarget }) =>
     setFilterCriteria(currentTarget.value);
 
@@ -36,12 +34,12 @@ function ShowBandsOptions({
           onChange={handleOrderChange}
         />
       </fieldset>
-      {genresData && (
+      {genres && (
         <>
           <label htmlFor='genres'>Filter for genre:</label>
           <select id='genres' name='genres' onChange={handleFilterChange}>
             <option value='all'>All</option>
-            {genresData.map(({ name, code }) => (
+            {genres.map(({ name, code }) => (
               <option key={code} value={code}>
                 {name}
               </option>
@@ -57,7 +55,9 @@ ShowBandsOptions.propTypes = {
   setOrderAsc: PropTypes.func.isRequired,
   orderAsc: PropTypes.bool.isRequired,
   setFilterCriteria: PropTypes.func.isRequired,
-  genres: PropTypes.object,
+  genres: PropTypes.arrayOf(
+    PropTypes.shape({ code: PropTypes.string, name: PropTypes.string })
+  ),
 };
 
 export default ShowBandsOptions;

@@ -11,28 +11,51 @@ function App() {
   const [orderAsc, setOrderAsc] = React.useState(true);
   const [filterCriteria, setFilterCriteria] = React.useState('all');
 
-  const bands = useGetData(BANDS_URL);
-  const genres = useGetData(GENRES_URL);
+  const {
+    data: bandsData,
+    status: bandsStatus,
+    error: bandsError,
+  } = useGetData(BANDS_URL);
+  const {
+    data: genresData,
+    status: genresStatus,
+    error: genresError,
+  } = useGetData(GENRES_URL);
+
+  if (bandsStatus === 'pending' || genresStatus === 'pending')
+    return <div>Loading...</div>;
+
+  if (bandsError || genresError)
+    return <div>Something went wrong retrieving data</div>;
 
   return (
     <Router>
       <Switch>
         <Route exact path='/'>
           <ShowBandsOptions
-            genres={genres}
+            genres={genresData}
             orderAsc={orderAsc}
             setFilterCriteria={setFilterCriteria}
             setOrderAsc={setOrderAsc}
           />
           <BandsList
-            bands={bands}
+            bands={bandsData}
             filterCriteria={filterCriteria}
             orderAsc={orderAsc}
           />
         </Route>
-        <Route exact path='/:id'>
-          <BandInfo bands={bands} genres={genres} />
-        </Route>
+        <Route
+          exact
+          path='/:idBand'
+          render={({ match }) => {
+            const { idBand } = match.params;
+            const band = bandsData.find((band) => band.id === Number(idBand));
+            const { name: genre } = genresData.find(
+              ({ code }) => code === band.genreCode
+            );
+            return <BandInfo bandData={{ ...band, genre }} />;
+          }}
+        />
       </Switch>
     </Router>
   );

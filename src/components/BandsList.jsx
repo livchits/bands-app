@@ -6,13 +6,7 @@ import filterByGenre from '../utils/filterByGenre';
 import sortByName from '../utils/sortByName';
 
 function BandsList({ orderAsc, filterCriteria, bands }) {
-  const { status, data, error } = bands;
-
-  if (error) return <div>Something went wrong retrieving bands list</div>;
-
-  if (status === 'pending') return <div>Loading...</div>;
-
-  const sortedBands = sortByName(data, orderAsc);
+  const sortedBands = sortByName(bands, orderAsc);
   const filteredBands = filterByGenre(sortedBands, filterCriteria);
 
   return (
@@ -29,7 +23,16 @@ function BandsList({ orderAsc, filterCriteria, bands }) {
 BandsList.propTypes = {
   orderAsc: PropTypes.bool.isRequired,
   filterCriteria: PropTypes.string.isRequired,
-  bands: PropTypes.object.isRequired,
+  bands: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      genreCode: PropTypes.string,
+      year: PropTypes.number,
+      country: PropTypes.string,
+      members: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string })),
+    })
+  ),
 };
 
 export default BandsList;

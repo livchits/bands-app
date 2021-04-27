@@ -1,13 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
-import useGetData from '../hooks/useGetData';
-import { ALBUMS_URL } from '../constants/urls';
-
-function Albums({ bandId }) {
-  const { data: albumsData } = useGetData(`${ALBUMS_URL}${bandId}`);
-
-  return albumsData?.length ? (
+function Albums({ albumsData }) {
+  return (
     <section>
       <h2>Albums:</h2>
       <ul>
@@ -18,11 +13,18 @@ function Albums({ bandId }) {
         ))}
       </ul>
     </section>
-  ) : null;
+  );
 }
 
 Albums.propTypes = {
-  bandId: PropTypes.string.isRequired,
+  albumsData: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      bandId: PropTypes.number,
+      name: PropTypes.string,
+      year: PropTypes.number,
+    })
+  ).isRequired,
 };
 
 export default Albums;
