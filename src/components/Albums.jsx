@@ -24,7 +24,7 @@ Albums.propTypes = {
       name: PropTypes.string,
       year: PropTypes.number,
     })
-  ).isRequired,
+  ),
 };
 
 export default Albums;

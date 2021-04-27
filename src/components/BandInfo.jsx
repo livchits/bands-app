@@ -23,9 +23,7 @@ function BandInfo({ bandData }) {
           ))}
         </ul>
       </section>
-      <section>
-        {albumsData?.length && <Albums albumsData={albumsData} />}
-      </section>
+      {Boolean(albumsData?.length) && <Albums albumsData={albumsData} />}
     </main>
   );
 }
