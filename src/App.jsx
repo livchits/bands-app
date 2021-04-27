@@ -6,6 +6,8 @@ import BandInfo from './components/BandInfo';
 import BandsList from './components/BandsList';
 import ShowBandsOptions from './components/ShowBandsOptions';
 import useGetData from './hooks/useGetData';
+import findBandById from './utils/findBandById';
+import getGenreByCode from './utils/getGenreByCode';
 
 function App() {
   const [orderAsc, setOrderAsc] = React.useState(true);
@@ -46,13 +48,11 @@ function App() {
         </Route>
         <Route
           exact
-          path='/:idBand'
+          path='/:bandId'
           render={({ match }) => {
-            const { idBand } = match.params;
-            const band = bandsData.find((band) => band.id === Number(idBand));
-            const { name: genre } = genresData.find(
-              ({ code }) => code === band.genreCode
-            );
+            const { bandId } = match.params;
+            const band = findBandById(bandsData, bandId);
+            const genre = getGenreByCode(genresData, band);
             return <BandInfo bandData={{ ...band, genre }} />;
           }}
         />
