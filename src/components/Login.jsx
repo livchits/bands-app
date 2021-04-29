@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Redirect } from 'react-router';
+import { Redirect } from 'react-router-dom';
 
 import { useUser } from '../context/UserContext';
 import { loginUser } from '../services/mockedAuth';
