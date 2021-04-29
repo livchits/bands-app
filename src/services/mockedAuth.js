@@ -1,4 +1,4 @@
-function login(username, password) {
+function auth(username, password) {
   const validUser = {
     username: 'admin',
     password: '1234',
@@ -18,4 +18,4 @@ function login(username, password) {
   });
 }
 
-export default login;
+export default auth;
