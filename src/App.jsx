@@ -1,5 +1,10 @@
 import * as React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from 'react-router-dom';
 
 import Home from './components/Home';
 import Login from './components/Login';
@@ -15,6 +20,9 @@ function App() {
             <Home />
           </PrivateRoute>
           <Route exact path='/'>
+            <Redirect to='/login' />
+          </Route>
+          <Route exact path='/login'>
             <Login />
           </Route>
         </Switch>
