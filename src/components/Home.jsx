@@ -13,6 +13,7 @@ import getGenreByCode from '../utils/getGenreByCode';
 
 import BandInfo from './BandInfo';
 import BandsList from './BandsList';
+import Header from './Header';
 import ShowBandsOptions from './ShowBandsOptions';
 
 function Home() {
@@ -38,33 +39,36 @@ function Home() {
     return <div>Something went wrong retrieving data</div>;
 
   return (
-    <Router>
-      <Switch>
-        <Route exact path={`${path}`}>
-          <ShowBandsOptions
-            genres={genresData}
-            orderAsc={orderAsc}
-            setFilterCriteria={setFilterCriteria}
-            setOrderAsc={setOrderAsc}
+    <>
+      <Header />
+      <Router>
+        <Switch>
+          <Route exact path={`${path}`}>
+            <ShowBandsOptions
+              genres={genresData}
+              orderAsc={orderAsc}
+              setFilterCriteria={setFilterCriteria}
+              setOrderAsc={setOrderAsc}
+            />
+            <BandsList
+              bands={bandsData}
+              filterCriteria={filterCriteria}
+              orderAsc={orderAsc}
+            />
+          </Route>
+          <Route
+            exact
+            path={`${path}/:bandId`}
+            render={({ match }) => {
+              const { bandId } = match.params;
+              const band = findBandById(bandsData, bandId);
+              const genre = getGenreByCode(genresData, band);
+              return <BandInfo bandData={{ ...band, genre }} />;
+            }}
           />
-          <BandsList
-            bands={bandsData}
-            filterCriteria={filterCriteria}
-            orderAsc={orderAsc}
-          />
-        </Route>
-        <Route
-          exact
-          path={`${path}/:bandId`}
-          render={({ match }) => {
-            const { bandId } = match.params;
-            const band = findBandById(bandsData, bandId);
-            const genre = getGenreByCode(genresData, band);
-            return <BandInfo bandData={{ ...band, genre }} />;
-          }}
-        />
-      </Switch>
-    </Router>
+        </Switch>
+      </Router>
+    </>
   );
 }
 
