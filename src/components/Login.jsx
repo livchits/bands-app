@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Redirect } from 'react-router';
 
 import { useUser } from '../context/UserContext';
-import auth from '../services/mockedAuth';
+import { loginUser } from '../services/mockedAuth';
 
 function Login() {
   const formRef = React.useRef();
@@ -12,7 +12,7 @@ function Login() {
     event.preventDefault();
     const { username, password } = formRef.current.elements;
 
-    auth(username.value, password.value).then((user) => {
+    loginUser(username.value, password.value).then((user) => {
       setUser(user);
     });
   };
