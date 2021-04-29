@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Redirect } from 'react-router';
 
 import { useUser } from '../context/UserContext';
 import auth from '../services/mockedAuth';
@@ -6,16 +7,18 @@ import auth from '../services/mockedAuth';
 function Login() {
   const usernameRef = React.useRef();
   const passwordRef = React.useRef();
-  const [, setUser] = useUser();
+  const [user, setUser] = useUser();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    auth(usernameRef.current.value, passwordRef.current.value).then((user) =>
-      setUser(user)
-    );
+    auth(usernameRef.current.value, passwordRef.current.value).then((user) => {
+      setUser(user);
+    });
   };
 
-  return (
+  return user ? (
+    <Redirect to='/bands' />
+  ) : (
     <form onSubmit={handleSubmit}>
       <label htmlFor='username'>Username:</label>
       <input ref={usernameRef} id='username' name='username' type='text' />

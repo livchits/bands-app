@@ -1,7 +1,5 @@
 import * as React from 'react';
 
-// import auth from '../services/mockedAuth';
-
 const UserContext = React.createContext();
 
 function UserProvider(props) {

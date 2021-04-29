@@ -1,5 +1,10 @@
 import * as React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  useRouteMatch,
+} from 'react-router-dom';
 
 import { BANDS_URL, GENRES_URL } from '../constants/urls';
 import useGetData from '../hooks/useGetData';
@@ -13,6 +18,7 @@ import ShowBandsOptions from './ShowBandsOptions';
 function Home() {
   const [orderAsc, setOrderAsc] = React.useState(true);
   const [filterCriteria, setFilterCriteria] = React.useState('all');
+  const { path } = useRouteMatch();
 
   const {
     data: bandsData,
@@ -34,7 +40,7 @@ function Home() {
   return (
     <Router>
       <Switch>
-        <Route exact path='/'>
+        <Route exact path={`${path}`}>
           <ShowBandsOptions
             genres={genresData}
             orderAsc={orderAsc}
@@ -49,7 +55,7 @@ function Home() {
         </Route>
         <Route
           exact
-          path='/:bandId'
+          path={`${path}/:bandId`}
           render={({ match }) => {
             const { bandId } = match.params;
             const band = findBandById(bandsData, bandId);
