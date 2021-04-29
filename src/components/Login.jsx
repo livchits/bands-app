@@ -5,13 +5,14 @@ import { useUser } from '../context/UserContext';
 import auth from '../services/mockedAuth';
 
 function Login() {
-  const usernameRef = React.useRef();
-  const passwordRef = React.useRef();
+  const formRef = React.useRef();
   const [user, setUser] = useUser();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    auth(usernameRef.current.value, passwordRef.current.value).then((user) => {
+    const { username, password } = formRef.current.elements;
+
+    auth(username.value, password.value).then((user) => {
       setUser(user);
     });
   };
@@ -19,11 +20,11 @@ function Login() {
   return user ? (
     <Redirect to='/bands' />
   ) : (
-    <form onSubmit={handleSubmit}>
+    <form ref={formRef} onSubmit={handleSubmit}>
       <label htmlFor='username'>Username:</label>
-      <input ref={usernameRef} id='username' name='username' type='text' />
+      <input id='username' name='username' type='text' />
       <label htmlFor='password'>Password:</label>
-      <input ref={passwordRef} id='password' name='password' type='password' />
+      <input id='password' name='password' type='password' />
       <button type='submit'>Login</button>
     </form>
   );
