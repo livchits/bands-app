@@ -19,11 +19,11 @@ function App() {
           <PrivateRoute path='/bands'>
             <Home />
           </PrivateRoute>
-          <Route exact path='/'>
-            <Redirect to='/login' />
-          </Route>
           <Route exact path='/login'>
             <Login />
+          </Route>
+          <Route path='/'>
+            <Redirect to='/login' />
           </Route>
         </Switch>
       </Router>
