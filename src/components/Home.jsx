@@ -13,6 +13,7 @@ import getGenreByCode from '../utils/getGenreByCode';
 
 import BandInfo from './BandInfo';
 import BandsList from './BandsList';
+import Container from './Container';
 import Header from './Header';
 import ShowBandsOptions from './ShowBandsOptions';
 
@@ -39,7 +40,7 @@ function Home() {
     return <div>Something went wrong retrieving data</div>;
 
   return (
-    <>
+    <Container>
       <Header />
       <Router>
         <Switch>
@@ -68,7 +69,7 @@ function Home() {
           />
         </Switch>
       </Router>
-    </>
+    </Container>
   );
 }
 

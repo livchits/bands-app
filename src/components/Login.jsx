@@ -4,6 +4,8 @@ import { Redirect } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 import { loginUser } from '../services/mockedAuth';
 
+import Container from './Container';
+
 function Login() {
   const formRef = React.useRef();
   const [user, setUser] = useUser();
@@ -20,7 +22,7 @@ function Login() {
   return user ? (
     <Redirect to='/bands' />
   ) : (
-    <main className='flex flex-col justify-center w-11/12 max-w-2xl mx-auto bg-red-600 rounded-md shadow-md h-5/6 font-chivo text-gray-50 bg-opacity-90'>
+    <Container>
       <section className='flex flex-col items-center justify-center text-center h-2/5'>
         <h1 className='px-4 text-4xl sm:text-6xl sm:max-w-md'>
           Welcome to the <span className='font-bold'>Bands App</span>
@@ -56,7 +58,7 @@ function Login() {
           Login
         </button>
       </form>
-    </main>
+    </Container>
   );
 }
 
