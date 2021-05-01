@@ -16,14 +16,13 @@ function Login() {
       setUser(user);
     });
   };
-  //darle altura al section en porcentaje y el texto meterlo en un p que puedo centrar con flexbox
-  //cambiar el color del rojo
+
   return user ? (
     <Redirect to='/bands' />
   ) : (
     <main className='flex flex-col justify-center w-11/12 max-w-2xl mx-auto bg-red-600 rounded-md shadow-md h-5/6 font-chivo text-gray-50 bg-opacity-90'>
       <section className='flex flex-col items-center justify-center text-center h-2/5'>
-        <h1 className='text-4xl sm:text-6xl sm:max-w-md'>
+        <h1 className='px-4 text-4xl sm:text-6xl sm:max-w-md'>
           Welcome to the <span className='font-bold'>Bands App</span>
         </h1>
       </section>

@@ -7,12 +7,12 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "@tailwindcss/forms": "^0.3.2",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.3.2",
     "@vitejs/plugin-react-refresh": "^1.1.0",
     "autoprefixer": "^10.2.5",
     "eslint": "^7.24.0",
