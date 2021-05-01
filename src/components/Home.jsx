@@ -44,7 +44,7 @@ function Home() {
       <Header />
       <Router>
         <Switch>
-          <Route exact path={`${path}`}>
+          <Route exact path={path}>
             <ShowBandsOptions
               genres={genresData}
               orderAsc={orderAsc}
