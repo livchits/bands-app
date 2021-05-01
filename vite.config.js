@@ -7,7 +7,12 @@ export default defineConfig({
     reactRefresh(),
     ViteFonts({
       google: {
-        families: ['Roboto'],
+        families: [
+          {
+            name: 'Chivo',
+            styles: 'ital,wght@0,400;0,900;1,400;1,900',
+          },
+        ],
       },
     }),
   ],

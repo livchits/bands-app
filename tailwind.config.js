@@ -4,12 +4,12 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        roboto: ['Roboto'],
+        chivo: ['Chivo', 'sans-serif'],
       },
     },
   },
   variants: {
-    extend: {},
+    extend: { ringWidth: ['hover', 'active'], textColor: ['active'] },
+    plugins: [require('@tailwindcss/forms')],
   },
-  plugins: [],
 };
