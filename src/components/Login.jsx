@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 import { loginUser } from '../services/mockedAuth';
 
+import Button from './Button';
 import Container from './Container';
 
 function Login() {
@@ -28,9 +29,9 @@ function Login() {
           Welcome to the <span className='font-bold'>Bands App</span>
         </h1>
       </section>
-      <form ref={formRef} className='m-auto' onSubmit={handleSubmit}>
-        <div className='pb-1'>
-          <label className='block py-1 text-xl' htmlFor='username'>
+      <form ref={formRef} onSubmit={handleSubmit}>
+        <div className='w-2/3 pb-1 mx-auto max-w-min'>
+          <label className='block py-1 pr-2 text-xl' htmlFor='username'>
             Username
           </label>
           <input
@@ -40,8 +41,8 @@ function Login() {
             type='text'
           />
         </div>
-        <div className='pb-8'>
-          <label className='block py-1 text-xl' htmlFor='password'>
+        <div className='w-2/3 mx-auto mb-12 max-w-min'>
+          <label className='block py-1 pr-2 text-xl' htmlFor='password'>
             Password
           </label>
           <input
@@ -51,12 +52,7 @@ function Login() {
             type='password'
           />
         </div>
-        <button
-          className='block w-2/3 p-2 m-auto text-2xl font-black transition-all duration-100 ease-in rounded-md ring-2 ring-gray-50 ring-opacity-75 hover:ring-4 focus:ring-4 focus:ring-indigo-400 active:text-gray-200'
-          type='submit'
-        >
-          Login
-        </button>
+        <Button>Login</Button>
       </form>
     </Container>
   );
