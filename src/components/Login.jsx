@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 import { loginUser } from '../services/mockedAuth';
 
-import Button from './Button';
 import Container from './Container';
 
 function Login() {
@@ -52,7 +51,12 @@ function Login() {
             type='password'
           />
         </div>
-        <Button>Login</Button>
+        <button
+          className='block p-2 m-auto text-2xl font-black transition-all duration-100 ease-in rounded-md px-9 ring-2 ring-gray-50 ring-opacity-75 hover:ring-4 focus:ring-4 focus:ring-indigo-400 active:text-gray-200'
+          onClick={handleSubmit}
+        >
+          Login
+        </button>
       </form>
     </Container>
   );
