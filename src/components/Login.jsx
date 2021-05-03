@@ -35,7 +35,7 @@ function Login() {
             Username
           </label>
           <input
-            className='p-2 text-gray-800 border-none rounded-md focus:ring-4 focus:ring-indigo-400'
+            className='p-2 text-gray-800 border-none rounded-md outline-none focus:ring-4 focus:ring-indigo-400'
             id='username'
             name='username'
             type='text'
@@ -46,7 +46,7 @@ function Login() {
             Password
           </label>
           <input
-            className='p-2 text-gray-800 border-none rounded-md focus:ring-4 focus:ring-indigo-400'
+            className='p-2 text-gray-800 border-none rounded-md outline-none focus:ring-4 focus:ring-indigo-400'
             id='password'
             name='password'
             type='password'
