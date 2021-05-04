@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 function Albums({ albumsData }) {
   return (
-    <section>
-      <h2>Albums:</h2>
-      <ul>
+    <section className='mt-2 text-xl'>
+      <h2 className='py-1 font-black'>Albums:</h2>
+      <ul className='pl-4'>
         {albumsData.map(({ name, year }) => (
-          <p key={name}>
-            {name} ({year})
-          </p>
+          <li key={name}>
+            {name} <span className='italic'>({year})</span>
+          </li>
         ))}
       </ul>
     </section>

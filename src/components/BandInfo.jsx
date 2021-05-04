@@ -10,14 +10,22 @@ function BandInfo({ bandData }) {
   const { data: albumsData } = useGetData(`${ALBUMS_URL}${id}`);
 
   return (
-    <main>
-      <h1>{name}</h1>
-      <section>
-        <p>Country: {country}</p>
-        <p>Formed in {year}</p>
-        {genre && <p>Genre: {genre}</p>}
-        <h2>Members:</h2>
-        <ul>
+    <main className='w-5/6 mx-auto mt-4'>
+      <h1 className='text-3xl font-black border-b-2 border-current'>{name}</h1>
+      <section className='mt-6 text-xl'>
+        <p className='py-1'>
+          <span className='font-black'>Country:</span> {country}
+        </p>
+        <p className='py-1'>
+          <span className='font-black'>Formation year:</span> {year}
+        </p>
+        {genre && (
+          <p>
+            <span className='py-1 font-black'>Genre:</span> {genre}
+          </p>
+        )}
+        <h2 className='py-1 font-black'>Members:</h2>
+        <ul className='pl-4'>
           {members.map(({ name }) => (
             <li key={name}>{name}</li>
           ))}
