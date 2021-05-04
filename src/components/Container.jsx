@@ -9,7 +9,10 @@ function Container({ children }) {
 }
 
 Container.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.node),
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
 };
 
 export default Container;
