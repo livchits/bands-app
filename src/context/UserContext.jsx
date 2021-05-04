@@ -3,26 +3,9 @@ import * as React from 'react';
 const UserContext = React.createContext();
 
 function UserProvider(props) {
-  const [user, setUser] = React.useState();
-
-  /* React.useEffect(() => {
-    const unsuscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        const { displayName, email, uid } = auth.currentUser; //también se puede usar user
-        const userData = { displayName, email, uid };
-        setUser(userData);
-        window.localStorage.setItem(
-          `${process.env.REACT_APP_APP_ID}_user`,
-          JSON.stringify(userData)
-        );
-      } else {
-        setUser(null);
-        window.localStorage.removeItem(`${process.env.REACT_APP_APP_ID}_user`);
-      }
-    });
-
-    return () => unsuscribe();
-  }, []); */
+  const [user, setUser] = React.useState(
+    () => JSON.parse(window.localStorage.getItem('bands_app_user')) || null
+  );
 
   return <UserContext.Provider value={[user, setUser]} {...props} />;
 }

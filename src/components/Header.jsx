@@ -6,6 +6,7 @@ function Header() {
   const [, setUser] = useUser();
 
   const handleLogout = () => {
+    window.localStorage.removeItem('bands_app_user');
     setUser(null);
   };
 
