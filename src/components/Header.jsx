@@ -6,7 +6,6 @@ function Header() {
   const [, setUser] = useUser();
 
   const handleLogout = () => {
-    console.log('logout');
     setUser(null);
   };
 
