@@ -8,9 +8,14 @@ function useGetData(url) {
   React.useEffect(() => {
     fetch(url)
       .then((response) => response.json())
-      .then((data) => setData(data))
-      .catch((error) => setError(error))
-      .finally(() => setStatus('complete'));
+      .then((data) => {
+        setData(data);
+        setStatus('succeded');
+      })
+      .catch((error) => {
+        setError(error);
+        setStatus('failed');
+      });
   }, [url]);
 
   return { status, data, error };
