@@ -1,7 +1,7 @@
 function loginUser(username, password) {
   const validUser = {
-    username: 'admin',
-    password: '1234',
+    username: 'johndoe',
+    password: 'pass',
   };
 
   const userExists = username === validUser.username;
@@ -13,7 +13,7 @@ function loginUser(username, password) {
 
   return Promise.reject({
     error: {
-      description: 'Wrong username or password',
+      message: 'Wrong username or password',
     },
   });
 }
