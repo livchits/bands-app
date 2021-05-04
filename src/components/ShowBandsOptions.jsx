@@ -13,7 +13,7 @@ function ShowBandsOptions({
   const handleOrderChange = () => setOrderAsc((orderAsc) => !orderAsc);
 
   return (
-    <form className='px-5 py-4 mx-auto text-2xl sm:flex sm:justify-around sm:my-8'>
+    <form className='px-5 py-4 mx-auto text-2xl sm:flex sm:justify-evenly sm:my-8'>
       <fieldset className='mb-1'>
         <legend className='float-left font-semibold'>Order</legend>
         <label className='ml-3 mr-1' htmlFor='asc'>
