@@ -1,6 +1,6 @@
 function getGenreByCode(genresData, { genreCode }) {
-  const { name } = genresData.find(({ code }) => code === genreCode);
-  return name;
+  const genre = genresData.find(({ code }) => code === genreCode);
+  return genre?.name || genreCode.split('-').join(' ');
 }
 
 export default getGenreByCode;
