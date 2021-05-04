@@ -32,54 +32,58 @@ function Home() {
     error: genresError,
   } = useGetData(GENRES_URL);
 
-  if (bandsStatus === 'pending' || genresStatus === 'pending')
+  if (bandsError || genresError) {
     return (
       <Container>
-        <div className='grid items-center w-full h-full text-4xl text-center'>
-          <p>Loading...</p>
+        <div className='grid items-center h-full'>
+          <p className='w-3/4 px-2 py-6 mx-auto mb-6 text-xl font-black text-center bg-red-800 border-4 border-red-900 rounded-md sm:w-2/3'>
+            Something went wrong retrieving data
+          </p>
         </div>
       </Container>
     );
+  }
 
-  if (bandsError || genresError)
+  if (bandsStatus === 'resolved' && genresStatus === 'resolved') {
     return (
       <Container>
-        <div className='grid items-center w-3/4 p-2 mx-auto mb-6 text-lg font-black text-center bg-red-800 border-4 border-red-900 rounded-md sm:w-2/3'>
-          <p>Something went wrong retrieving data</p>
-        </div>
+        <Header />
+        <Router>
+          <Switch>
+            <Route exact path={path}>
+              <ShowBandsOptions
+                genres={genresData}
+                orderAsc={orderAsc}
+                setFilterCriteria={setFilterCriteria}
+                setOrderAsc={setOrderAsc}
+              />
+              <BandsList
+                bands={bandsData}
+                filterCriteria={filterCriteria}
+                orderAsc={orderAsc}
+              />
+            </Route>
+            <Route
+              exact
+              path={`${path}/:bandId`}
+              render={({ match }) => {
+                const { bandId } = match.params;
+                const band = findBandById(bandsData, bandId);
+                const genre = getGenreByCode(genresData, band);
+                return <BandInfo bandData={{ ...band, genre }} />;
+              }}
+            />
+          </Switch>
+        </Router>
       </Container>
     );
+  }
 
   return (
     <Container>
-      <Header />
-      <Router>
-        <Switch>
-          <Route exact path={path}>
-            <ShowBandsOptions
-              genres={genresData}
-              orderAsc={orderAsc}
-              setFilterCriteria={setFilterCriteria}
-              setOrderAsc={setOrderAsc}
-            />
-            <BandsList
-              bands={bandsData}
-              filterCriteria={filterCriteria}
-              orderAsc={orderAsc}
-            />
-          </Route>
-          <Route
-            exact
-            path={`${path}/:bandId`}
-            render={({ match }) => {
-              const { bandId } = match.params;
-              const band = findBandById(bandsData, bandId);
-              const genre = getGenreByCode(genresData, band);
-              return <BandInfo bandData={{ ...band, genre }} />;
-            }}
-          />
-        </Switch>
-      </Router>
+      <div className='grid items-center w-full h-full text-4xl text-center'>
+        <p>Loading...</p>
+      </div>
     </Container>
   );
 }

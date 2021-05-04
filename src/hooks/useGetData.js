@@ -1,21 +1,27 @@
 import * as React from 'react';
 
 function useGetData(url) {
-  const [data, setData] = React.useState();
-  const [status, setStatus] = React.useState('pending');
-  const [error, setError] = React.useState(null);
+  const [{ status, data, error }, setState] = React.useState({
+    status: 'idle',
+    data: null,
+    error: null,
+  });
 
   React.useEffect(() => {
+    setState((state) => ({ ...state, status: 'pending' }));
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        setData(data);
-        setStatus('succeded');
+        setState((state) => ({ ...state, data, status: 'resolved' }));
       })
       .catch((error) => {
-        setError(error);
-        setStatus('failed');
+        setState((state) => ({
+          ...state,
+          status: 'rejected',
+          error: error.message,
+        }));
       });
+    return () => setState({ status: 'idle', data: null, error: null });
   }, [url]);
 
   return { status, data, error };
