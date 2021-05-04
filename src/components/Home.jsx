@@ -34,10 +34,22 @@ function Home() {
   } = useGetData(GENRES_URL);
 
   if (bandsStatus === 'pending' || genresStatus === 'pending')
-    return <div>Loading...</div>;
+    return (
+      <Container>
+        <div className='grid items-center w-full h-full text-4xl text-center'>
+          <p>Loading...</p>
+        </div>
+      </Container>
+    );
 
   if (bandsError || genresError)
-    return <div>Something went wrong retrieving data</div>;
+    return (
+      <Container>
+        <div className='grid items-center w-3/4 p-2 mx-auto mb-6 text-lg font-black text-center bg-red-800 border-4 border-red-900 rounded-md sm:w-2/3'>
+          <p>Something went wrong retrieving data</p>
+        </div>
+      </Container>
+    );
 
   return (
     <Container>
