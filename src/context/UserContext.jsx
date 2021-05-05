@@ -4,7 +4,7 @@ const UserContext = React.createContext();
 
 function UserProvider(props) {
   const [user, setUser] = React.useState(
-    () => JSON.parse(window.localStorage.getItem('bands_app_user')) || null
+    () => JSON.parse(window.sessionStorage.getItem('bands_app_user')) || null
   );
 
   return <UserContext.Provider value={[user, setUser]} {...props} />;

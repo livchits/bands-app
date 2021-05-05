@@ -16,7 +16,7 @@ function Login() {
 
     loginUser(username.value, password.value)
       .then((user) => {
-        window.localStorage.setItem('bands_app_user', JSON.stringify(user));
+        window.sessionStorage.setItem('bands_app_user', JSON.stringify(user));
         setUser(user);
       })
       .catch(({ error }) => {
