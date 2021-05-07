@@ -11,8 +11,6 @@ The website has the following features:
 - View information of a specific band, including albums.
 - Logout.
 
-For more details see [the page of the original challenge](https://github.com/improvein/dev-challenge/tree/master/frontend-react).
-
 ## Technologies used
 
 - React
