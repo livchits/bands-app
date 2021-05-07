@@ -7,7 +7,6 @@
   flex-direction: column;
   justify-content: center;
   height: 100vh;
-  /* overflow: scroll; */
   background-image: linear-gradient(
       to bottom,
       rgba(109, 92, 92, 0.85),
