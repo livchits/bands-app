@@ -6,13 +6,12 @@ import { loginUser } from '../services/mockedAuth';
 import Container from '../components/Container';
 
 function Login() {
-  const formRef = React.useRef();
   const [user, setUser] = useUser();
   const [errorMessage, setErrorMessage] = React.useState(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const { username, password } = formRef.current.elements;
+    const { username, password } = event.target.elements;
 
     loginUser(username.value, password.value)
       .then((user) => {
@@ -35,7 +34,7 @@ function Login() {
           Welcome to the <span className='font-bold'>Bands App</span>
         </h1>
       </section>
-      <form ref={formRef} onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className='w-2/3 pb-1 mx-auto max-w-min'>
           <label className='block py-1 pr-2 text-xl' htmlFor='username'>
             Username
