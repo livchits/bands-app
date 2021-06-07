@@ -1,17 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-#root {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100vh;
-  background-image: linear-gradient(
-      to bottom,
-      rgba(109, 92, 92, 0.85),
-      rgba(241, 160, 160, 0.6)
-    ),
-    url('https://source.unsplash.com/jfU3_67YiwQ/full');
-  background-size: cover;
-}

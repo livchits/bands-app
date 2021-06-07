@@ -6,6 +6,9 @@ module.exports = {
       fontFamily: {
         chivo: ['Chivo', 'sans-serif'],
       },
+      backgroundImage: {
+        show: 'url("https://source.unsplash.com/jfU3_67YiwQ/full")',
+      },
     },
   },
   variants: {
