@@ -2,6 +2,8 @@
 
 Bands App is a simple data query website for music bands made with React.
 
+![imagen](https://user-images.githubusercontent.com/48001346/132267932-e964f19a-21d6-47d6-828b-1262fce0264f.png)
+
 ## Functionality
 
 The website has the following features:
