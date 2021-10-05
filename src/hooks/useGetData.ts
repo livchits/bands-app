@@ -6,7 +6,7 @@ interface Data {
   error: string | null;
 }
 
-function useGetData(url: string): Data {
+function useGetData(url: string) {
   const [{ status, data, error }, setState] = React.useState<Data>({
     status: 'idle',
     data: null,
