@@ -48,4 +48,12 @@ module.exports = {
     'react/react-in-jsx-scope': 'error',
     'jsx-a11y/no-onchange': 'off',
   },
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      rules: {
+        '@typescript-eslint/explicit-module-boundary-types': ['off'],
+      },
+    },
+  ],
 };
