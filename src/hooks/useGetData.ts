@@ -1,7 +1,13 @@
 import * as React from 'react';
 
-function useGetData(url) {
-  const [{ status, data, error }, setState] = React.useState({
+interface Data {
+  status: 'idle' | 'pending' | 'resolved' | 'rejected';
+  data: Record<string, unknown> | null;
+  error: string | null;
+}
+
+function useGetData(url: string): Data {
+  const [{ status, data, error }, setState] = React.useState<Data>({
     status: 'idle',
     data: null,
     error: null,
