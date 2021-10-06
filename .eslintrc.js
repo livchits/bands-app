@@ -50,7 +50,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['*.ts', '*.tsx'],
+      files: ['*.ts', '*.tsx', '*.js', '*.jsx'],
       rules: {
         '@typescript-eslint/explicit-module-boundary-types': ['off'],
       },
