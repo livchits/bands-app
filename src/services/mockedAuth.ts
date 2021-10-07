@@ -1,4 +1,4 @@
-function loginUser(username, password) {
+function loginUser(username: string, password: string) {
   const validUser = {
     username: 'johndoe',
     password: 'pass',
