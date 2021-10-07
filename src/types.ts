@@ -22,3 +22,13 @@ export type Genre =
   | 'Rock'
   | 'Rock & Roll'
   | 'all';
+
+export type GenreCode =
+  | 'black-metal'
+  | 'grunge'
+  | 'hard-rock'
+  | 'heavy-metal'
+  | 'power-metal'
+  | 'progressive-metal'
+  | 'rock'
+  | 'rock-roll';
