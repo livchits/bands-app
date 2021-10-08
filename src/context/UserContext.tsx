@@ -23,7 +23,7 @@ function UserProvider({ children }: { children: React.ReactNode }) {
 function useUser() {
   const { user, setUser } = React.useContext(UserContext);
 
-  return { user, setUser };
+  return [user, setUser];
 }
 
 export { UserProvider, useUser };
