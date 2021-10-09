@@ -7,11 +7,17 @@ import Container from '../components/Container';
 
 function Login() {
   const [user, setUser] = useUser();
-  const [errorMessage, setErrorMessage] = React.useState(null);
+  const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const { username, password } = event.target.elements;
+
+    const target = event.target as typeof event.target & {
+      username: { value: string };
+      password: { value: string };
+    };
+
+    const { username, password } = target;
 
     loginUser(username.value, password.value)
       .then((user) => {
