@@ -1,14 +1,19 @@
 import * as React from 'react';
 
+interface User {
+  username: string;
+  password: string;
+}
+
 type ContextValue = [
-  string | null,
-  React.Dispatch<React.SetStateAction<string | null>>
+  User | null,
+  React.Dispatch<React.SetStateAction<User | null>>
 ];
 
 const UserContext = React.createContext<ContextValue>({} as ContextValue);
 
 function UserProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = React.useState<string | null>(() => {
+  const [user, setUser] = React.useState<User | null>(() => {
     const userData = window.sessionStorage.getItem('bands_app_user');
     return userData ? JSON.parse(userData) : null;
   });
