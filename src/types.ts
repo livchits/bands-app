@@ -12,6 +12,13 @@ export interface GenreData {
   name: string;
 }
 
+export interface AlbumData {
+  id: number;
+  bandId: number;
+  name: string;
+  year: number;
+}
+
 export type Genre =
   | 'Black Metak'
   | 'Grunge'
