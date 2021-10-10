@@ -70,7 +70,7 @@ function Home() {
                 const { bandId } = match.params;
                 const band = findBandById(bandsData, bandId);
                 const genre = getGenreByCode(genresData, band);
-                return <BandInfo bandData={{ ...band, genre }} />;
+                return <BandInfo {...band} genre={genre} />;
               }}
             />
           </Switch>
