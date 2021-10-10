@@ -1,14 +1,22 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+
+import { GenreCode, GenreData } from '../types';
+
+interface ShowBandsOptionsProps {
+  setOrderAsc: React.Dispatch<React.SetStateAction<boolean>>;
+  orderAsc: boolean;
+  setFilterCriteria: React.Dispatch<React.SetStateAction<GenreCode>>;
+  genres: GenreData[];
+}
 
 function ShowBandsOptions({
   setOrderAsc,
   orderAsc,
   setFilterCriteria,
   genres,
-}) {
-  const handleFilterChange = ({ currentTarget }) =>
-    setFilterCriteria(currentTarget.value);
+}: ShowBandsOptionsProps) {
+  const handleFilterChange = (event: React.FormEvent<HTMLSelectElement>) =>
+    setFilterCriteria(event.currentTarget.value as GenreCode);
 
   const handleOrderChange = () => setOrderAsc((orderAsc) => !orderAsc);
 
@@ -24,7 +32,7 @@ function ShowBandsOptions({
           id='asc'
           name='order'
           type='radio'
-          value={orderAsc}
+          value='asc'
           onChange={handleOrderChange}
         />
         <label className='ml-2 mr-1' htmlFor='desc'>
@@ -34,7 +42,7 @@ function ShowBandsOptions({
           id='desc'
           name='order'
           type='radio'
-          value={orderAsc}
+          value='desc'
           onChange={handleOrderChange}
         />
       </fieldset>
@@ -61,14 +69,5 @@ function ShowBandsOptions({
     </form>
   );
 }
-
-ShowBandsOptions.propTypes = {
-  setOrderAsc: PropTypes.func.isRequired,
-  orderAsc: PropTypes.bool.isRequired,
-  setFilterCriteria: PropTypes.func.isRequired,
-  genres: PropTypes.arrayOf(
-    PropTypes.shape({ code: PropTypes.string, name: PropTypes.string })
-  ),
-};
 
 export default ShowBandsOptions;
