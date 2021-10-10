@@ -1,11 +1,17 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { Link, useRouteMatch } from 'react-router-dom';
 
 import filterByGenre from '../utils/filterByGenre';
 import sortByName from '../utils/sortByName';
+import { BandData, Genre } from '../types';
 
-function BandsList({ orderAsc, filterCriteria, bands }) {
+interface BandsListProps {
+  orderAsc: boolean;
+  filterCriteria: Genre;
+  bands: BandData[];
+}
+
+function BandsList({ orderAsc, filterCriteria, bands }: BandsListProps) {
   const sortedBands = sortByName(bands, orderAsc);
   const filteredBands = filterByGenre(sortedBands, filterCriteria);
   const { url } = useRouteMatch();
@@ -25,20 +31,5 @@ function BandsList({ orderAsc, filterCriteria, bands }) {
     </ul>
   );
 }
-
-BandsList.propTypes = {
-  orderAsc: PropTypes.bool.isRequired,
-  filterCriteria: PropTypes.string.isRequired,
-  bands: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      name: PropTypes.string,
-      genreCode: PropTypes.string,
-      year: PropTypes.number,
-      country: PropTypes.string,
-      members: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string })),
-    })
-  ),
-};
 
 export default BandsList;
