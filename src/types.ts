@@ -4,7 +4,7 @@ export interface BandData {
   genreCode: string;
   year: number;
   country: string;
-  members: string[];
+  members: { name: string }[];
 }
 
 export interface GenreData {
