@@ -3,11 +3,11 @@ import { Link, useRouteMatch } from 'react-router-dom';
 
 import filterByGenre from '../utils/filterByGenre';
 import sortByName from '../utils/sortByName';
-import { BandData, Genre } from '../types';
+import { BandData, GenreCode } from '../types';
 
 interface BandsListProps {
   orderAsc: boolean;
-  filterCriteria: Genre;
+  filterCriteria: GenreCode;
   bands: BandData[];
 }
 

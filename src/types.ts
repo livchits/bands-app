@@ -1,7 +1,7 @@
 export interface BandData {
   id: number;
   name: string;
-  genreCode: string;
+  genreCode: GenreCode;
   year: number;
   country: string;
   members: { name: string }[];
@@ -19,17 +19,6 @@ export interface AlbumData {
   year: number;
 }
 
-export type Genre =
-  | 'Black Metak'
-  | 'Grunge'
-  | 'Hard Rock'
-  | 'Heavy Metal'
-  | 'Power Metal'
-  | 'Progressive Metal'
-  | 'Rock'
-  | 'Rock & Roll'
-  | 'all';
-
 export type GenreCode =
   | 'black-metal'
   | 'grunge'
@@ -38,4 +27,5 @@ export type GenreCode =
   | 'power-metal'
   | 'progressive-metal'
   | 'rock'
-  | 'rock-roll';
+  | 'rock-roll'
+  | 'all';

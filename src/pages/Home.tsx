@@ -15,22 +15,19 @@ import BandsList from '../components/BandsList';
 import Container from '../components/Container';
 import Header from '../components/Header';
 import ShowBandsOptions from '../components/ShowBandsOptions';
+import { BandData, GenreCode, GenreData } from '../types';
 
 function Home() {
   const [orderAsc, setOrderAsc] = React.useState(true);
-  const [filterCriteria, setFilterCriteria] = React.useState('all');
+  const [filterCriteria, setFilterCriteria] = React.useState<GenreCode>('all');
   const { path } = useRouteMatch();
 
-  const {
-    data: bandsData,
-    status: bandsStatus,
-    error: bandsError,
-  } = useGetData(BANDS_URL);
-  const {
-    data: genresData,
-    status: genresStatus,
-    error: genresError,
-  } = useGetData(GENRES_URL);
+  const { data: bandsData, error: bandsError } = useGetData<BandData>(
+    BANDS_URL as string
+  );
+  const { data: genresData, error: genresError } = useGetData<GenreData>(
+    GENRES_URL as string
+  );
 
   if (bandsError || genresError) {
     return (
@@ -44,7 +41,7 @@ function Home() {
     );
   }
 
-  if (bandsStatus === 'resolved' && genresStatus === 'resolved') {
+  if (bandsData && genresData) {
     return (
       <Container>
         <Header />
@@ -69,8 +66,10 @@ function Home() {
               render={({ match }) => {
                 const { bandId } = match.params;
                 const band = findBandById(bandsData, bandId);
-                const genre = getGenreByCode(genresData, band);
-                return <BandInfo {...band} genre={genre} />;
+                if (band) {
+                  const genre = getGenreByCode(genresData, band?.genreCode);
+                  return <BandInfo {...band} genre={genre} />;
+                }
               }}
             />
           </Switch>

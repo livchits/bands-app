@@ -7,7 +7,7 @@ import { AlbumData, BandData } from '../types';
 import Albums from './Albums';
 
 interface BandInfoProp extends BandData {
-  genre: string;
+  genre?: string;
 }
 
 function BandInfo({ name, country, members, id, year, genre }: BandInfoProp) {
