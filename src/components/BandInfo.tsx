@@ -1,13 +1,17 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 
-import useGetData from '../hooks/useGetData';
 import { ALBUMS_URL } from '../constants/urls';
+import useGetData from '../hooks/useGetData';
+import { AlbumData, BandData } from '../types';
 
 import Albums from './Albums';
-function BandInfo({ bandData }) {
-  const { name, country, members, id, year, genre } = bandData;
-  const { data: albumsData } = useGetData(`${ALBUMS_URL}${id}`);
+
+interface BandInfoProp extends BandData {
+  genre: string;
+}
+
+function BandInfo({ name, country, members, id, year, genre }: BandInfoProp) {
+  const { data: albumsData } = useGetData<AlbumData>(`${ALBUMS_URL}${id}`);
 
   return (
     <main className='w-5/6 mx-auto mt-4'>
@@ -31,21 +35,11 @@ function BandInfo({ bandData }) {
           ))}
         </ul>
       </section>
-      {Boolean(albumsData?.length) && <Albums albumsData={albumsData} />}
+      {albumsData && Boolean(albumsData.length) && (
+        <Albums albumsData={albumsData} />
+      )}
     </main>
   );
 }
-
-BandInfo.propTypes = {
-  bandData: PropTypes.shape({
-    id: PropTypes.number,
-    name: PropTypes.string,
-    genreCode: PropTypes.string,
-    year: PropTypes.number,
-    country: PropTypes.string,
-    members: PropTypes.arrayOf(PropTypes.shape({ name: PropTypes.string })),
-    genre: PropTypes.string,
-  }),
-};
 
 export default BandInfo;
