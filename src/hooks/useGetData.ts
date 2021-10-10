@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-interface Data {
+interface Data<T> {
   status: 'idle' | 'pending' | 'resolved' | 'rejected';
-  data: Record<string, unknown> | null;
+  data: T[] | null;
   error: string | null;
 }
 
-function useGetData(url: string) {
-  const [{ status, data, error }, setState] = React.useState<Data>({
+function useGetData<T>(url: string) {
+  const [{ status, data, error }, setState] = React.useState<Data<T>>({
     status: 'idle',
     data: null,
     error: null,
