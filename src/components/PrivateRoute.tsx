@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { Redirect, Route } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { Redirect, Route, RouteProps } from 'react-router-dom';
 
 import { useUser } from '../context/UserContext';
 
-const PrivateRoute = ({ children, ...rest }) => {
+const PrivateRoute = ({ children, ...rest }: RouteProps) => {
   const [user] = useUser();
 
   return (
@@ -24,10 +23,6 @@ const PrivateRoute = ({ children, ...rest }) => {
       }
     />
   );
-};
-
-PrivateRoute.propTypes = {
-  children: PropTypes.element,
 };
 
 export default PrivateRoute;
