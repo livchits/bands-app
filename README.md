@@ -17,6 +17,7 @@ The website has the following features:
 
 - React
 - React Router
+- TypeScript
 - TailwindCSS
 - Vite
 
